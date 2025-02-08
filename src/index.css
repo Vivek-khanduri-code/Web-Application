@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+.header nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.hero {
+  background: url('https://png.pngtree.com/background/20250118/original/pngtree-digital-illustration-of-futuristic-technology-with-glowing-lines-and-abstract-connectivity-picture-image_16217385.jpg') no-repeat center center/cover;
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.services {
+  padding: 2rem;
+  text-align: center;
+}
+
+.service-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background: #f4f4f4;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 8px;
+  width: 30%;
+}
