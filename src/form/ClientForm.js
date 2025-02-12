@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ClientForm.css';
+import { put } from '@vercel/blob';
 
 const ClientForm = () => {
   const [formData, setFormData] = useState({
@@ -10,22 +10,17 @@ const ClientForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
   
     try {
-      const response = await fetch('https://your-vercel-backend.vercel.app/api/endpoint', {
-        method: 'POST', // Use POST to send form data
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData), // Send form data to backend
+      const response = await fetch('http://localhost:5000/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
   
       const result = await response.json();
@@ -33,7 +28,7 @@ const ClientForm = () => {
   
       if (response.ok) {
         alert('Thank you for contacting us!');
-        setFormData({ name: '', email: '', message:'', number: '' }); // Reset form
+        setFormData({ name: '', email: '', message: '' });
       } else {
         alert('Error submitting form. Please try again.');
       }
@@ -49,51 +44,21 @@ const ClientForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="number">Phone No.</label>
-          <input
-            type="text"
-            id="Number"
-            name="number"
-            value={formData.number}
-            onChange={handleChange}
-            required
-          />
+          <label htmlFor="number">Number</label>
+          <textarea name="number" value={formData.number} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label htmlFor="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
+          <textarea name="message" value={formData.message} onChange={handleChange} required />
         </div>
-        
-        <button type="submit" className="submit-button">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
