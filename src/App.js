@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Slider from './components/Slider';
 import Footer from './components/Footer';
+import ClientForm from './form/ClientForm';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<><Hero /><Services /><Slider /></>} />
         <Route path="/portfolio" element={<Slider />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/ClientForm" element={<ClientForm />} />
       </Routes>
       <Footer />
     </Router>
