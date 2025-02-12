@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { put } from '@vercel/blob';
 
+const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
+
 const ClientForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,7 +19,7 @@ const ClientForm = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:5000/api/submit', {
+      const response = await fetch('http://localhost:5000//https://your-vercel-backend.vercel.app/api/endpoint/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -28,7 +30,7 @@ const ClientForm = () => {
   
       if (response.ok) {
         alert('Thank you for contacting us!');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '',number:'' });
       } else {
         alert('Error submitting form. Please try again.');
       }
