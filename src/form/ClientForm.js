@@ -16,13 +16,33 @@ const ClientForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Data Submitted:', formData);
-    alert('Thank you for contacting us!');
-    setFormData({ name: '', email: '', message: '' }); // Reset form
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+  
+    try {
+      const response = await fetch('https://your-vercel-backend.vercel.app/api/endpoint', {
+        method: 'POST', // Use POST to send form data
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Send form data to backend
+      });
+  
+      const result = await response.json();
+      console.log('Response from backend:', result);
+  
+      if (response.ok) {
+        alert('Thank you for contacting us!');
+        setFormData({ name: '', email: '', message:'', number: '' }); // Reset form
+      } else {
+        alert('Error submitting form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong!');
+    }
   };
-
+  
   return (
     <div className="form-container">
       <h2>Contact Us</h2>
@@ -50,7 +70,7 @@ const ClientForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Phone No.</label>
+          <label htmlFor="number">Phone No.</label>
           <input
             type="text"
             id="Number"
