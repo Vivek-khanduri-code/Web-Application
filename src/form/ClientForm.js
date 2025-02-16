@@ -13,32 +13,35 @@ const ClientForm = () => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
-        console.log("Form Data Before Sending:", formData); // Add this line
-    
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+      
+        const formData = {
+          name: event.target.name.value,
+          email: event.target.email.value,
+          message: event.target.message.value,
+          number: event.target.number.value,
+        };
+      
         try {
-            const response = await fetch('http://localhost:5000/api/submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-    
-            const result = await response.json();
-            console.log("Response from backend:", result);
-            
-            if (response.ok) {
-                alert('Thank you for contacting us!');
-                setFormData({ name: '', email: '', message: '',number:'' }); // Reset form
-            } else {
-                alert('Error submitting form. Please try again.');
-            }
+          const response = await fetch('https://your-backend-url.com/api/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+      
+          const result = await response.json();
+          console.log('Form submitted successfully:', result);
         } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('Something went wrong!');
+          console.error('Error submitting form:', error);
         }
-    };
+      };
     
     return (
         <div className="form-container">

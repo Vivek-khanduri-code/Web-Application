@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // MongoDB Connection
 
-mongoose.connect('mongodb://localhost:27017/')
+mongoose.connect('mongodb://localhost:0.0.0.0/0/')
     .then(() => {
         console.log('MongoDB connected');
     }).catch(err => {
