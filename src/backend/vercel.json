@@ -1,5 +1,9 @@
 {
-    "version": 2,
-    "routes": [{ "src": "/https://your-vercel-backend.vercel.app/api/endpoint/(.*)", "dest": "/server.js" }]
-  }
-  
+  "version": 2,
+  "routes": [
+      {
+          "src": "/api/submit",
+          "dest": "/server.js"
+      }
+  ]
+}

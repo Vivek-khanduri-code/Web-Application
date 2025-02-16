@@ -1,22 +1,18 @@
-// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-
-mongoose.connect('mongodb://localhost:0.0.0.0/0/')
+mongoose.connect('mongodb+srv://vercel-admin-user:Wexr-3223@clustere.bbprk.mongodb.net/DB_UNIQUE_FROM?retryWrites=true&w=majority')
     .then(() => {
         console.log('MongoDB connected');
-    }).catch(err => {
+    })
+    .catch(err => {
         console.error('MongoDB connection error:', err);
     });
 
@@ -38,7 +34,6 @@ app.post('/api/submit', async (req, res) => {
         // Create a new document in MongoDB
         const newFormData = new FormData({ name, email, number, message });
         await newFormData.save();
-
         res.status(201).json({ message: 'Form data saved successfully!' });
     } catch (error) {
         console.error('Error saving form data:', error);
