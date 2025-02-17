@@ -51,6 +51,7 @@ const ClientForm = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        required 
                     />
                 </div>
                 <div className="form-group">
@@ -61,6 +62,18 @@ const ClientForm = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        required 
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="number">Phone No:</label>
+                    <input
+                        type="string"
+                        id="number"
+                        name="number"
+                        value={formData.number}
+                        onChange={handleChange}
+                        required 
                     />
                 </div>
                 <div className="form-group">
@@ -69,16 +82,6 @@ const ClientForm = () => {
                         id="message"
                         name="message"
                         value={formData.message}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="summary">Summary:</label>
-                    <input
-                        type="text"
-                        id="summary"
-                        name="summary"
-                        value={formData.summary}
                         onChange={handleChange}
                     />
                 </div>
