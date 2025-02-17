@@ -5,8 +5,9 @@ const ClientForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        number: '', // Added number field
         message: '',
-        summary: '',
+        // Removed summary field as it's not used in the form
     });
 
     const handleChange = (event) => {
@@ -21,7 +22,7 @@ const ClientForm = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('https://your-vercel-backend.vercel.app/api/submit', {
+            const response = await fetch('mongodb+srv://vercel-admin-user:Wexr-3223@clustere.bbprk.mongodb.net/DB_UNIQUE_FROM?retryWrites=true&w=majority', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ const ClientForm = () => {
                 <div className="form-group">
                     <label htmlFor="number">Phone No:</label>
                     <input
-                        type="string"
+                        type="tel" // Changed to tel for phone number
                         id="number"
                         name="number"
                         value={formData.number}
