@@ -58,7 +58,7 @@ body{
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Fixed box-shadow */
 }
 
-.submit-button {
+.submit-form{
   width: 100%; /* Fixed width */
   padding: 10px; /* Fixed unit */
   font-size: 16px; /* Fixed unit */
@@ -70,6 +70,6 @@ body{
   transition: background-color 0.3s ease;
 }
 
-.submit-button:hover {
+.submit-form:hover {
   background-color: #0056b3; /* Fixed color */
 }

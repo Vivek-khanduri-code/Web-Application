@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './clientForm.css';
+import './ClientForm.css';
 
 const ClientForm = () => {
     const [formData, setFormData] = useState({
@@ -82,7 +82,7 @@ const ClientForm = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className='submit-form'>Submit</button>
             </form>
         </div>
     );
