@@ -22,7 +22,7 @@ const ClientForm = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('mongodb+srv://vercel-admin-user:Wexr-3223@clustere.bbprk.mongodb.net/DB_UNIQUE_FROM?retryWrites=true&w=majority', {
+            const response = await fetch('https://web.application-give.vercel.app/form/api/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
