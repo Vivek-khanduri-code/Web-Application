@@ -22,7 +22,7 @@ const ClientForm = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('https://web.application-give.vercel.app/form/api/submit', {
+            const response = await fetch('web-application-qive-6tavepgny-vivek-kumars-projects-c4f8244c.vercel.app/api/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
