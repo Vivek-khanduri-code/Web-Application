@@ -2,14 +2,31 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// Enable CORS for all routes with specific origin
+// Enable CORS
 const corsOptions = {
-  origin: 'https://web-application-give.vercel.app', // Update to match your frontend's exact origin
-  credentials: true, // Allow cookies/auth headers if needed
-  methods: ['GET', 'POST', 'OPTIONS'], // Allow specific HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
+  origin: 'https://web-application-give.vercel.app', // Match your frontend origin
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
-
 app.use(cors(corsOptions));
 
-// ... rest of your code (e.g., API routes, MongoDB connection, etc.) ...
+// Parse JSON bodies
+app.use(express.json());
+
+// Define POST route for /api/submit
+app.post('/api/submit', async (req, res) => {
+  try {
+    const { name, email, number, message } = req.body;
+    // Save data to MongoDB or process as needed
+    res.status(200).json({ message: 'Form data saved successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to save form data', error });
+  }
+});
+
+// Start server (for local testing or if needed for Vercel)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

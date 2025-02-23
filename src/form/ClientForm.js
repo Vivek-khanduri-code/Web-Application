@@ -17,11 +17,11 @@ const ClientForm = () => {
     setSuccess('');
 
     try {
-      const response = await fetch('https://web-application-qive.vercel.app/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch('https://web-application-give-stavepgny-vivek-kumar-s-projects-cf48244c.vercel.app/api/submit', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData),
+});
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
