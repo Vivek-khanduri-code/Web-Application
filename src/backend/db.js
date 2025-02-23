@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Use environment variable for security
-const uri = process.env.MONGODB_URI; // Remove the fallback for production
+const url = process.env.MONGODB_URI || 'mongodb+srv://vercel-admin-user:7SFnV63zdFMl3PtH@cluster0.bbprk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 async function connect() {
   try {

@@ -17,21 +17,19 @@ const ClientForm = () => {
     setSuccess('');
 
     try {
-      const response = await fetch('https://web-application-give-stavepgny-vivek-kumar-s-projects-c4f8244c.vercel.app/api/submit', {
+      const response = await fetch('https://web-application-qive.vercel.app/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
       const result = await response.json();
-      setSuccess(result.message);
-      setFormData({ name: '', email: '', number: '', message: '' }); // Reset form
+      setSuccess(result.message); // Reset form
+      setFormData({ name: '', email: '', number: '', message: '' });
     } catch (err) {
-      setError('Error submitting form:', err.message);
+      setError('Error submitting form: ' + err.message);
       console.error(err);
     }
   };
