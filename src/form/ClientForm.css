@@ -1,75 +1,72 @@
-/* ClientForm.css */
 body{
+  background-image: url(https://www.shutterstock.com/shutterstock/photos/483345682/display_1500/stock-photo-application-online-college-form-concept-483345682.jpg);
+  
+  background-size:cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background:url(https://assets.entrepreneur.com/content/3x2/2000/20150429160658-website-traffic.jpeg)
+  
   
 }
 .form-container {
-  max-width: 500px; /* Fixed unit */
-  margin: 50px auto; /* Fixed unit */
-  padding: 30px; /* Fixed unit */
-  background-color: rgba(255, 255, 255, 0.7); /* Fixed rgba syntax */
-  border-radius: 10px; /* Fixed unit */
-  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); /* Fixed unit */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
   text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
 }
 
-.form-container h2 {
-  margin-bottom: 20px; /* Fixed unit */
-  font-size: 30px; /* Fixed unit */
-  color: #333; /* Fixed color */
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.form-group {
-  margin-bottom: 20px; /* Fixed unit */
-  text-align: left;
+.form-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px; /* Fixed unit */
-  font-size: 16px; /* Fixed unit */
-  color: #333; /* Fixed color */
+.message {
+  min-height: 100px;
+  resize: vertical;
 }
 
-.form-group input {
-  width: 100%; /* Added width */
-  padding: 10px; /* Fixed unit */
-  font-size: 16px; /* Fixed unit */
-  border: 1px solid #ccc; /* Fixed border */
-  border-radius: 5px; /* Fixed unit */
-  outline: none;
-}
-
-.form-group textarea {
-  width: 100%; /* Fixed width */
-  padding: 10px; /* Fixed unit */
-  font-size: 16px; /* Fixed unit */
-  border: 1px solid #ccc; /* Fixed border */
-  border-radius: 5px; /* Fixed unit */
-  outline: none;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #007bff; /* Fixed color */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Fixed box-shadow */
-}
-
-.submit-form{
-  width: 100%; /* Fixed width */
-  padding: 10px; /* Fixed unit */
-  font-size: 16px; /* Fixed unit */
-  color: #fff; /* Fixed color */
-  background-color: #007bff; /* Fixed color */
+.submit-btn {
+  padding: 12px 24px;
+  background: #3498db;
+  color: white;
   border: none;
-  border-radius: 5px; /* Fixed unit */
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
 }
 
-.submit-form:hover {
-  background-color: #0056b3; /* Fixed color */
+.submit-btn:hover {
+  background: #2980b9;
+}
+
+.success {
+  color: #27ae60;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.error {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    margin: 0 10px;
+  }
 }

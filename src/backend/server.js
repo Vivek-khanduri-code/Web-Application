@@ -1,47 +1,15 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware to parse JSON
-app.use(bodyParser.json());
+// Enable CORS for all routes with specific origin
+const corsOptions = {
+  origin: 'https://web-application-give-stavepgny-vivek-kumar-s-projects-cf48244c.vercel.app', // Match your frontend's exact origin
+  credentials: true, // Allow cookies/auth headers if needed
+  methods: ['GET', 'POST', 'OPTIONS'], // Allow specific HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
+};
 
-// MongoDB Connection
-mongoose.connect('mongodb+srv://vercel-admin-user@admin:Nexr-3223@clustere.bbprk.mongodb.net/DB_UNIQUE_FROM?retryWrites=true&w=majority')
-    .then(() => {
-        console.log('MongoDB connected');
-    })
-    .catch(err => {
-        console.error('MongoDB connection error:', err);
-    });
+app.use(cors(corsOptions));
 
-// Define a Schema and Model for Form Data
-const formDataSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    number: String,
-    message: String,
-});
-
-const FormData = mongoose.model('FormData', formDataSchema);
-
-// API Endpoint to Handle Form Submission
-app.post('/api/submit', async (req, res) => {
-    try {
-        const { name, email, number, message } = req.body;
-        // Create a new document in MongoDB
-        const newFormData = new FormData({ name, email, number, message });
-        await newFormData.save();
-        res.status(200).json({ message: 'Form data saved successfully!' });
-    } catch (error) {
-        console.error('Error saving form data:', error);
-        res.status(500).json({ message: 'Failed to save form data' });
-    }
-});
-
-// Start the Server
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// ... rest of your code ...

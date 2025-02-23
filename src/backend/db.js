@@ -1,16 +1,16 @@
-const { MongoClient } = require('mongodb');
-const url = 'mongodb+srv://vercel-admin-user:Wexr-3223@clustere.bbprk.mongodb.net/DB_UNIQUE_FROM?retryWrites=true&w=majority';
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoose = require('mongoose');
+
+// Use environment variable for security
+const uri = process.env.MONGODB_URI; // Remove the fallback for production
 
 async function connect() {
-    try {
-        await client.connect();
-        console.log('Connected to MongoDB');
-        return client.db('DB_UNIQUE_FROM'); // replace with your database name
-    } catch (err) {
-        console.error('Failed to connect to MongoDB', err);
-        throw err;
-    }
+  try {
+    await mongoose.connect(uri);
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('Failed to connect to MongoDB:', err);
+    throw err;
+  }
 }
 
-module.exports = { connect };
+module.exports = connect;

@@ -1,2 +1,2 @@
 const cors = require("cors");
-app.use(cors({ origin: "https://your-frontend.vercel.app", credentials: true }));
+app.use(cors({ origin: "https://web-application-qive.vercel.app/", credentials: true }));

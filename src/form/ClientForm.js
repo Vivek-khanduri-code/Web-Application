@@ -2,94 +2,85 @@ import React, { useState } from 'react';
 import './ClientForm.css';
 
 const ClientForm = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        number: '', // Added number field
-        message: '',
-        // Removed summary field as it's not used in the form
-    });
+  const [formData, setFormData] = useState({ name: '', email: '', number: '', message: '' });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
 
-        try {
-            const response = await fetch('web-application-qive-6tavepgny-vivek-kumars-projects-c4f8244c.vercel.app/api/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
+    try {
+      const response = await fetch('https://web-application-give-stavepgny-vivek-kumar-s-projects-c4f8244c.vercel.app/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
-            const result = await response.json();
-            console.log('Form submitted successfully:', result);
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
-    };
+      const result = await response.json();
+      setSuccess(result.message);
+      setFormData({ name: '', email: '', number: '', message: '' }); // Reset form
+    } catch (err) {
+      setError('Error submitting form:', err.message);
+      console.error(err);
+    }
+  };
 
-    return (
-        <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required 
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required 
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="number">Phone No:</label>
-                    <input
-                        type="tel" // Changed to tel for phone number
-                        id="number"
-                        name="number"
-                        value={formData.number}
-                        onChange={handleChange}
-                        required 
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="message">Message:</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit" className='submit-form'>Submit</button>
-            </form>
-        </div>
-    );
+  return (
+    <div className="form-container">
+      <h1>Contact Us</h1>
+      {success && <p className="success">{success}</p>}
+      {error && <p className="error">{error}</p>}
+      <form onSubmit={handleSubmit} className="client-form">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your Name"
+          required
+          className="form-input"
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your Email"
+          required
+          className="form-input"
+        />
+        <input
+          type="tel"
+          name="number"
+          value={formData.number}
+          onChange={handleChange}
+          placeholder="Your Phone Number"
+          required
+          className="form-input"
+        />
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Your Message"
+          required
+          className="form-input message"
+        />
+        <button type="submit" className="submit-btn">Submit</button>
+      </form>
+    </div>
+  );
 };
 
 export default ClientForm;
